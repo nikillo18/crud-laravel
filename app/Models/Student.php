@@ -12,7 +12,6 @@ class student extends Model
     }
     use HasFactory;
     protected $fillable = [
-        'id',
         'dni',
         'apellido',
         'nombre',

@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">Lista de estudiantes</div>
             <div class="card-body">
-                <a href="{{ route('students.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New students</a>
+                <a href="{{ route('student.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New students</a>
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -39,15 +39,15 @@
                             <td>{{$students->nacimiento}}</td>
                             
                             <td>
-                                <form action="{{ route('students.destroy', $students->id) }}" method="post">
+                                <form action="{{ route('student.destroy', $students->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
 
-                                    <a href="{{ route('students.show', $students->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
+                                    <a href="{{ route('student.show', $students->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
                                     
-                                     <a href="{{ route('students.edit', $students) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> info</a>
+                                     <a href="{{ route('student.edit', $students) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> info</a>
                                     
-                                    <a href="{{ route('students.edit', $students->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                                    <a href="{{ route('student.edit', $students->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
 
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this students?');"><i class="bi bi-trash"></i> Delete</button>
                                 </form>

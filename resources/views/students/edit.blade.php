@@ -17,11 +17,11 @@
                     Edit students
                 </div>
                 
-                    <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
+                    <a href="{{ route('student.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('students.update', $students) }}" method="post">
+                <form action="{{ route('student.update', $students) }}" method="post">
                     @csrf
                     @method("PUT")
 

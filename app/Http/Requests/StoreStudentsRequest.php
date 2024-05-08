@@ -23,13 +23,11 @@ class StoreStudentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id'=> 'required|Integer|max:250',
-            'dni'=> 'required|integer|',
+            'dni'=> 'required|integer',
             'apellido' => 'required|string|max:250',
             'nombre' => 'required|string|max:250',
             'asistencias' => 'required|Integer|max:250',
-            'nacimiento'=> 'required |date|' 
-            
+            'nacimiento'=> 'required|date|' 
         ];
     }
 }

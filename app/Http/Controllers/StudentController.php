@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\student;
+use App\Models\Student;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentsRequest;
 use App\Http\Requests\UpdateStudentsRequest;
 
-class StudentsController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class StudentsController extends Controller
     public function index(): View
     {
         return view('students.index', [
-            'students' => student::latest()->paginate(10)
+            'students' => Student::latest()->paginate(10)
         ]);
     }
 
@@ -34,8 +34,8 @@ class StudentsController extends Controller
      */
     public function store(StoreStudentsRequest $request): RedirectResponse
     {
-        student::create($request->all());
-        return redirect()->route('students.index')
+        Student::create($request->all());
+        return redirect()->route('student.index')
             ->withSuccess('new students is added successfully.');
     }
 
@@ -78,7 +78,7 @@ class StudentsController extends Controller
         $students = Student::Find($id);
         
         $students->delete();
-        return redirect()->route('students.index')
+        return redirect()->route('student.index')
             ->withSuccess('students is deleted successfully.');
     }
 }
