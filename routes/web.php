@@ -17,9 +17,8 @@ use App\Models\Student;
 */
 
 Route::get('/', function () {
-    return view('students.index',[
-            'students' => student::latest()->paginate(10)
-]});
+    return view('welcome');
+}); 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
