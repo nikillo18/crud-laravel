@@ -1,7 +1,4 @@
-@extends('students.layouts')
-
-@section('content')
-
+<x-app-layout>
 <div class="row justify-content-center mt-3">
     <div class="col-md-12">
 
@@ -69,5 +66,4 @@
         </div>
     </div>
 </div>
-
-@endsection
+</x-app-layout>
