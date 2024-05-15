@@ -1,64 +1,16 @@
 <x-app-layout>
 <div class="">
     <div class="">
-
         @if ($message = Session::get('success'))
         <div class="" role="alert">
             {{ $message }}
         </div>
         @endif
-
         <div class="">
             <div class="card-header">Lista de estudiantes</div>
             <div class="card-body">
                 <a href="{{ route('students.create') }}" class=""><i class="bi bi-plus-circle"></i> Add New students</a>
-                <table class="">
-                    <thead>
-                        <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">dni</th>
-                            <th scope="col">apellido</th>
-                            <th scope="col">nombre</th>
-                             <th scope="col">nacimiento</th>
-                             <th scope="col">Action</th>
-                       
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($students as $students)
-                        <tr>
-                        
-                            
-                            <td>{{$students->id}}</td>
-                            <td>{{$students->dni}}</td>
-                            <td>{{$students->apellido}}</td>
-                            <td>{{$students->nombre}}</td>
-                            <td>{{$students->nacimiento}}</td>
-                            
-                            <td>
-                                <form action="{{ route('students.destroy', $students->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <a href="{{ route('students.show', $students->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
-                                    
-                                     <a href="{{ route('students.edit', $students) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> info</a>
-                                    
-                                    <a href="{{ route('students.edit', $students->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
-
-                                    <button type="submit" class="" onclick="return confirm('Do you want to delete this students?');"><i class="bi bi-trash"></i> Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @empty
-                        <td colspan="6">
-                            <span class="">
-                                <strong>No students Found!</strong>
-                            </span>
-                        </td>
-                        @endforelse
-                    </tbody>
-                </table>
+                
 
               
 
@@ -66,4 +18,50 @@
         </div>
     </div>
 </div>
+
+<table class="table-auto w-full bg-black text-white border border-gray-300">
+    <thead class="bg-blue-900 text-white"   >
+        <tr class="text-center">
+            <th class="border border-gray-800 px-4 py-2">id</th>
+            <th class="border border-gray-800 px-4 py-2">dni</th>
+            <th class="border border-gray-800 px-4 py-2">apellido</th>
+            <th class="border border-gray-800 px-4 py-2">nombre</th>
+            <th class="border border-gray-800 px-4 py-2">nacimiento</th>
+            <th class="border border-gray-800 px-4 py-2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @forelse ($students as $students)
+        <tr>
+            
+            <td class="border border-gray-800 px-4 py-2">{{$students->id}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$students->dni}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$students->apellido}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$students->nombre}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$students->nacimiento}}</td>
+            
+            <td>
+                <form action="{{ route('students.destroy', $students->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+
+                    <a href="{{ route('students.show', $students->id) }}" class=""><i class="bi bi-eye"></i> Show</a>
+                    
+                        <a href="{{ route('students.edit', $students) }}" class=""><i class="bi bi-pencil-square"></i> info</a>
+                    
+                    <a href="{{ route('students.edit', $students->id) }}" class=""><i class="bi bi-pencil-square"></i> Edit</a>
+
+                    <button type="submit" class="" onclick="return confirm('Do you want to delete this students?');"><i class="bi bi-trash"></i> Delete</button>
+                </form>
+            </td>
+        </tr>
+        @empty
+        <td colspan="6">
+            <span class="">
+                <strong>No students Found!</strong>
+            </span>
+        </td>
+        @endforelse
+    </tbody>
+</table>
 </x-app-layout>
