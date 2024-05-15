@@ -1,18 +1,18 @@
 <x-app-layout>
-<div class="row justify-content-center mt-3">
-    <div class="col-md-12">
+<div class="">
+    <div class="">
 
         @if ($message = Session::get('success'))
-        <div class="alert alert-success" role="alert">
+        <div class="" role="alert">
             {{ $message }}
         </div>
         @endif
 
-        <div class="card">
+        <div class="">
             <div class="card-header">Lista de estudiantes</div>
             <div class="card-body">
-                <a href="{{ route('students.create') }}" class="btn btn-success btn-sm my-2"><i class="bi bi-plus-circle"></i> Add New students</a>
-                <table class="table table-striped table-bordered">
+                <a href="{{ route('students.create') }}" class=""><i class="bi bi-plus-circle"></i> Add New students</a>
+                <table class="">
                     <thead>
                         <tr>
                             <th scope="col">id</th>
@@ -46,13 +46,13 @@
                                     
                                     <a href="{{ route('students.edit', $students->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
 
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this students?');"><i class="bi bi-trash"></i> Delete</button>
+                                    <button type="submit" class="" onclick="return confirm('Do you want to delete this students?');"><i class="bi bi-trash"></i> Delete</button>
                                 </form>
                             </td>
                         </tr>
                         @empty
                         <td colspan="6">
-                            <span class="text-danger">
+                            <span class="">
                                 <strong>No students Found!</strong>
                             </span>
                         </td>
