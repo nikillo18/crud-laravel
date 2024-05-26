@@ -3,7 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Student;
+use App\Http\Controllers\AsisstController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +21,7 @@ use App\Models\Student;
 
 Route::get('/', function () {
     return view('welcome');
-}); 
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,7 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('students', StudentsController::class);
-});
+    Route::get('/asissts', [AsisstController::class, 'index'])->name('asissts.index');
+    Route::post('/asissts/search', [AsisstController::class, 'search'])->name('asissts.search');
+    Route::post('/asissts', [AsisstController::class, 'store'])->name('asissts.store');
 
+
+});
 
 require __DIR__.'/auth.php';
