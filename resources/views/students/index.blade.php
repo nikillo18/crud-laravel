@@ -10,10 +10,6 @@
             <div class="card-header">Lista de estudiantes</div>
             <div class="card-body">
                 <a href="{{ route('students.create') }}" class=""><i class="bi bi-plus-circle"></i> new students</a>
-                
-
-              
-
             </div>
         </div>
     </div>
@@ -32,24 +28,24 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($students as $students)
+        @forelse ($students as $student)
         <tr>
             
-            <td class="border border-gray-800 px-4 py-2">{{$students->id}}</td>
-            <td class="border border-gray-800 px-4 py-2">{{$students->dni}}</td>
-            <td class="border border-gray-800 px-4 py-2">{{$students->apellido}}</td>
-            <td class="border border-gray-800 px-4 py-2">{{$students->nombre}}</td>
-            <td class="border border-gray-800 px-4 py-2">{{$students->nacimiento}}</td>
-            <td class="border border-gray-800 px-4 py-2">{{$students->asisst}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$student->id}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$student->dni}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$student->apellido}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$student->nombre}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$student->nacimiento}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$student->asisst}}</td>
             
             <td>
-                <form action="{{ route('students.destroy', $students->id) }}" method="post">
+                <form action="{{ route('students.destroy', $student->id) }}" method="post">
                     @csrf
                     @method('DELETE')
 
-                    <a title="{{__('Mostrar')}}" href="{{ route('students.show', $students->id) }}" class="p-3 outline-none border-1 border-r-2 border-white"><i class="bi bi-eye"></i></a>
+                    <a title="{{__('Mostrar')}}" href="{{ route('students.show', $student->id) }}" class="p-3 outline-none border-1 border-r-2 border-white"><i class="bi bi-eye"></i></a>
                     
-                    <a title="{{__('Editar')}}" href="{{ route('students.edit', $students) }}" class=""><i class="bi bi-pencil-square"></i></a>
+                    <a title="{{__('Editar')}}" href="{{ route('students.edit', $student) }}" class=""><i class="bi bi-pencil-square"></i></a>
 
                     <button title="{{__('Eliminar')}}" type="submit" class="" onclick="return confirm('Do you want to delete this students?');"><i class="bi bi-trash"></i></button>
                 </form>

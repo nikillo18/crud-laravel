@@ -8,13 +8,12 @@
                             <th scope="col">id</th>
                             <th scope="col">estudiante id</th>
                             <th scope="col">asistencias</th>
-                             
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($students as $students)
+                        @forelse ($students as $student)
                         <tr>
-                            <td>{{$students->id}}</td>
+                            <td>{{$student->id}}</td>
                             <th scope="col">estudiante id</th>
                             <th scope="col">asistencias</th>
                         </tr>
