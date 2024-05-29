@@ -50,4 +50,9 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+@endsection
+<x-app-layout>
+=======
 </x-app-layout>
+>>>>>>> 6eb0cd318693d8abdb2311be7d04d3b28e4204ff
