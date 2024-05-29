@@ -45,13 +45,11 @@
                     @csrf
                     @method('DELETE')
 
-                    <a href="{{ route('students.show', $students->id) }}" class=""><i class="bi bi-eye"></i> Show</a>
+                    <a title="{{__('Mostrar')}}" href="{{ route('students.show', $students->id) }}" class="p-3 outline-none border-1 border-r-2 border-white"><i class="bi bi-eye"></i></a>
                     
-                        <a href="{{ route('students.edit', $students) }}" class=""><i class="bi bi-pencil-square"></i> info</a>
-                    
-                    <a href="{{ route('students.edit', $students->id) }}" class=""><i class="bi bi-pencil-square"></i> Edit</a>
+                    <a title="{{__('Editar')}}" href="{{ route('students.edit', $students) }}" class=""><i class="bi bi-pencil-square"></i></a>
 
-                    <button type="submit" class="" onclick="return confirm('Do you want to delete this students?');"><i class="bi bi-trash"></i> Delete</button>
+                    <button title="{{__('Eliminar')}}" type="submit" class="" onclick="return confirm('Do you want to delete this students?');"><i class="bi bi-trash"></i></button>
                 </form>
             </td>
         </tr>
