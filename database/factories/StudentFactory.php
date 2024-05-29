@@ -22,7 +22,8 @@ class StudentFactory extends Factory
             "dni"=>fake()->randomNumber($nbDigits=8,$strict=true),
             'apellido' => fake()->lastName(),
             'nombre' => fake()->name(),
-            "nacimiento"=>fake()->date()
+            "nacimiento"=>fake()->date(),
+            'asisst'=>fake()->numberBetween($min = 1, $max = 10)
         ];
     }
 }

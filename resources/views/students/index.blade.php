@@ -9,7 +9,7 @@
         <div class="">
             <div class="card-header">Lista de estudiantes</div>
             <div class="card-body">
-                <a href="{{ route('students.create') }}" class=""><i class="bi bi-plus-circle"></i> Add New students</a>
+                <a href="{{ route('students.create') }}" class=""><i class="bi bi-plus-circle"></i> new students</a>
                 
 
               
@@ -27,7 +27,8 @@
             <th class="border border-gray-800 px-4 py-2">apellido</th>
             <th class="border border-gray-800 px-4 py-2">nombre</th>
             <th class="border border-gray-800 px-4 py-2">nacimiento</th>
-            <th class="border border-gray-800 px-4 py-2">Action</th>
+            <th class="border border-gray-800 px-4 py-2">asisst</th>
+             <th class="border border-gray-800 px-4 py-2">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -39,6 +40,7 @@
             <td class="border border-gray-800 px-4 py-2">{{$students->apellido}}</td>
             <td class="border border-gray-800 px-4 py-2">{{$students->nombre}}</td>
             <td class="border border-gray-800 px-4 py-2">{{$students->nacimiento}}</td>
+            <td class="border border-gray-800 px-4 py-2">{{$students->asisst}}</td>
             
             <td>
                 <form action="{{ route('students.destroy', $students->id) }}" method="post">

@@ -7,6 +7,7 @@ use App\Models\student;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentsRequest;
+use App\Http\Requests\students;
 use App\Http\Requests\UpdateStudentsRequest;
 
 class StudentsController extends Controller
@@ -14,9 +15,29 @@ class StudentsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index():view
     {
-        return view('students.index', [
+        /**$todaysDate = date("Y-m-d");
+        $students = Student::all();
+        $birthdayStudents = [];
+        
+        foreach ($students as $student) {
+            if ($student->nacimiento == $todaysDate) {
+                $birthdayStudents[] = $student->nombre;
+            }
+        }
+        
+        if (!empty($birthdayStudents)) {
+            $mensaje = "Hoy es el cumpleaños de:";
+            foreach ($birthdayStudents as $nombre) {
+                $mensaje .= "," . $nombre ;
+            }
+            return $mensaje;
+        } else {
+            return "No hay estudiantes que cumplan años hoy.";
+        }*/
+
+         return view('students.index', [
             'students' => student::latest()->paginate(10)
         ]);
     }
@@ -82,4 +103,5 @@ class StudentsController extends Controller
             ->withSuccess('students is deleted successfully.');
     }
 }
+
 

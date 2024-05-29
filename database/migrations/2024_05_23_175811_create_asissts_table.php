@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assists', function (Blueprint $table) {
+        Schema::create('asissts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("student_id")->constrained(
-                table:"students",indexName:"id"
-            );
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->date('fecha');
+            $table->boolean('presente');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('assists');
+        Schema::dropIfExists('asissts');
     }
 };
