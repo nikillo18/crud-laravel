@@ -1,10 +1,10 @@
 <x-app-layout>
     <div class="bg-gray-900 text-gray-200 min-h-screen flex items-center justify-center">
         <div class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-lg">
-            <h1 class="text-2xl font-bold mb-4">Registrar Asistencia</h1>
+            <h1 class="text-2xl font-bold mb-4">Registrar Asistencia de:</h1>
             <div class="mb-4">
                 <h2 class="text-xl font-semibold">Nombre: {{ $student->nombre }} {{ $student->apellido }}</h2>
-                <h2 class="text-xl font-semibold">DNI: {{ $student->dni }} - Nacimiento: {{ $student->nacimiento }}</h2>
+                <h2 class="text-xl font-semibold">DNI: {{ $student->dni }} - Nacimiento: {{ $student->nacimiento }}-Asistencias: {{$student->asisst}}</h2>
             </div>
             <form action="{{ route('asissts.store') }}" method="POST" class="space-y-4">
                 @csrf
