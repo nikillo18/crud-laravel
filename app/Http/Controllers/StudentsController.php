@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentsRequest;
 use App\Http\Requests\students;
 use App\Http\Requests\UpdateStudentsRequest;
+use DateTime;
 
 class StudentsController extends Controller
 {
@@ -17,7 +18,9 @@ class StudentsController extends Controller
      */
     public function index():view
     {
-        /**$todaysDate = date("Y-m-d");
+       /**  $todaysDate = date("m-d");
+        $date = new DateTime();
+        $date->format('d-Y');
         $students = Student::all();
         $birthdayStudents = [];
         
