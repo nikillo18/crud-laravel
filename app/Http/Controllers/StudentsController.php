@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentsRequest;
 use App\Http\Requests\students;
 use App\Http\Requests\UpdateStudentsRequest;
-use DateTime;
+use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
@@ -58,7 +58,7 @@ class StudentsController extends Controller
      */
     public function store(StoreStudentsRequest $request): RedirectResponse
     {
-        student::create($request->all());
+        Student::create($request->all());
         return redirect()->route('students.index')
             ->withSuccess('new students is added successfully.');
     }

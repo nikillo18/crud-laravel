@@ -14,15 +14,8 @@
                 <form action="{{ route('students.store') }}" method="post">
                     @csrf
                     <div class="mb-4">
-                        <label for="id" class="block text-gray-300 mb-2">id</label>
-                        <input type="number" class="bg-gray-700 text-white border border-gray-600 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 @error('id') border-red-500 @enderror" id="id" name="id" value="{{ old('id') }}">
-                        @if ($errors->has('id'))
-                        <span class="text-red-500 text-sm">{{ $errors->first('id') }}</span>
-                        @endif
-                    </div>
-                    <div class="mb-4">
                         <label for="dni" class="block text-gray-300 mb-2">dni</label>
-                        <input type="number" class="bg-gray-700 text-white border border-gray-600 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 @error('dni') border-red-500 @enderror" id="dni" name="dni" value="{{ old('dni') }}">
+                        <input maxlength="8" type="text" class="bg-gray-700 text-white border border-gray-600 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 @error('dni') border-red-500 @enderror" id="dni" name="dni" value="{{ old('dni') }}">
                         @if ($errors->has('dni'))
                         <span class="text-red-500 text-sm">{{ $errors->first('dni') }}</span>
                         @endif
