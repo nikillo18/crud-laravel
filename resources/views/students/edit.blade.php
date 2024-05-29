@@ -1,92 +1,76 @@
-@extends('students.layouts')
-
-@section('content')
-
-<div class="row justify-content-center mt-3">
-    <div class="col-md-8">
+<x-app-layout>
+<div class="flex justify-center mt-3">
+    <div class="w-full md:w-2/3 lg:w-1/2">
 
         @if ($message = Session::get('success'))
-        <div class="alert alert-success" role="alert">
+        <div class="bg-green-900 border border-green-700 text-green-200 px-4 py-3 rounded relative" role="alert">
             {{ $message }}
         </div>
         @endif
 
-        <div class="card">
-            <div class="card-header">
-                <div class="float-start">
+        <div class="bg-gray-800 shadow-md rounded-lg overflow-hidden">
+            <div class="px-6 py-4 bg-gray-700 border-b border-gray-600">
+                <div class="float-left text-gray-300">
                     Edit students
                 </div>
-                
-                    <a href="{{ route('students.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
+                <div class="float-right">
+                    <a href="{{ route('students.index') }}" class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded text-sm">&larr; Back</a>
                 </div>
+                <div class="clear-both"></div>
             </div>
-            <div class="card-body">
+            <div class="px-6 py-4">
                 <form action="{{ route('students.update', $students) }}" method="post">
                     @csrf
                     @method("PUT")
 
-                    <div class="mb-3 row">
-                        <label for="id" class="col-md-4 col-form-label text-md-end text-start">id</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control @error('id') is-invalid @enderror" id="id" name="id" value="{{ $students->id }}">
-                            @if ($errors->has('id'))
-                            <span class="text-danger">{{ $errors->first('id') }}</span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="dni" class="col-md-4 col-form-label text-md-end text-start">dni</label>
-                        <div class="col-md-6">
-                            <input type="number" class="form-control @error('dni') is-invalid @enderror" id="dni" name="dni" value="{{ old('dni') }}">
-                            @if ($errors->has('dni'))
-                            <span class="text-danger">{{ $errors->first('dni') }}</span>
-                            @endif
-                        </div>
+                    <div class="mb-4">
+                        <label for="id" class="block text-gray-300 text-sm font-bold mb-2">id</label>
+                        <input type="text" class="shadow appearance-none border @error('id') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-900" id="id" name="id" value="{{ $students->id }}">
+                        @if ($errors->has('id'))
+                        <p class="text-red-500 text-xs italic">{{ $errors->first('id') }}</p>
+                        @endif
                     </div>
 
-
-                    <div class="mb-3 row">
-                        <label for="apellido" class="col-md-4 col-form-label text-md-end text-start">apellido</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control @error('apellido') is-invalid @enderror" id="apellido" name="apellido" value="{{ $students->apellido }}">
-                            @if ($errors->has('apellido'))
-                            <span class="text-danger">{{ $errors->first('apellido') }}</span>
-                            @endif
-                        </div>
+                    <div class="mb-4">
+                        <label for="dni" class="block text-gray-300 text-sm font-bold mb-2">dni</label>
+                        <input type="number" class="shadow appearance-none border @error('dni') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-900" id="dni" name="dni" value="{{ old('dni') }}">
+                        @if ($errors->has('dni'))
+                        <p class="text-red-500 text-xs italic">{{ $errors->first('dni') }}</p>
+                        @endif
                     </div>
 
-                    <div class="mb-3 row">
-                        <label for="nombre" class="col-md-4 col-form-label text-md-end text-start">nombre</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ $students->nombre }}">
-                            @if ($errors->has('nombre'))
-                            <span class="text-danger">{{ $errors->first('nombre') }}</span>
-                            @endif
-                        </div>
+                    <div class="mb-4">
+                        <label for="apellido" class="block text-gray-300 text-sm font-bold mb-2">apellido</label>
+                        <input type="text" class="shadow appearance-none border @error('apellido') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-900" id="apellido" name="apellido" value="{{ $students->apellido }}">
+                        @if ($errors->has('apellido'))
+                        <p class="text-red-500 text-xs italic">{{ $errors->first('apellido') }}</p>
+                        @endif
                     </div>
 
-                  
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="nacimiento" class="col-md-4 col-form-label text-md-end text-start">nacimiento</label>
-                        <div class="col-md-6">
-                            <input type="date" step="0.01" class="form-control @error('nacimiento') is-invalid @enderror" id="nacimiento" name="nacimiento" value="{{ $students->nacimiento}}">
-                            @if ($errors->has('nacimiento'))
-                            <span class="text-danger">{{ $errors->first('nacimiento') }}</span>
-                            @endif
-                        </div>
+                    <div class="mb-4">
+                        <label for="nombre" class="block text-gray-300 text-sm font-bold mb-2">nombre</label>
+                        <input type="text" class="shadow appearance-none border @error('nombre') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-900" id="nombre" name="nombre" value="{{ $students->nombre }}">
+                        @if ($errors->has('nombre'))
+                        <p class="text-red-500 text-xs italic">{{ $errors->first('nombre') }}</p>
+                        @endif
                     </div>
 
-                
+                    <div class="mb-4">
+                        <label for="nacimiento" class="block text-gray-300 text-sm font-bold mb-2">nacimiento</label>
+                        <input type="date" step="0.01" class="shadow appearance-none border @error('nacimiento') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-900" id="nacimiento" name="nacimiento" value="{{ $students->nacimiento}}">
+                        @if ($errors->has('nacimiento'))
+                        <p class="text-red-500 text-xs italic">{{ $errors->first('nacimiento') }}</p>
+                        @endif
+                    </div>
 
-                    <div class="mb-3 row">
-                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Update">
+                    <div class="mb-4 flex justify-center">
+                        <input type="submit" class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded" value="Update">
                     </div>
 
                 </form>
-           
+            </div>
         </div>
     </div>
 </div>
 
-@endsection
+</x-app-layout>
