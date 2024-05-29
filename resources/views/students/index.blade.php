@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+
 
 <div class="overflow-x-auto">
     <table class="table-auto w-full bg-gray-900 text-white border border-gray-700">
