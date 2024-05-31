@@ -20,7 +20,7 @@
         <table class="table-auto w-full bg-gray-900 text-white border border-gray-700">
             <thead class="bg-gray-700 text-gray-300">
                 <tr class="text-center">
-                    <th class="border border-gray-800 px-4 py-2">ID</th>
+                  {{--  <th class="border border-gray-800 px-4 py-2">ID</th>--}}
                     <th class="border border-gray-800 px-4 py-2">DNI</th>
                     <th class="border border-gray-800 px-4 py-2">Apellido</th>
                     <th class="border border-gray-800 px-4 py-2">Nombre</th>
@@ -32,7 +32,7 @@
             <tbody>
                 @forelse ($students as $student)
                 <tr class="text-center">
-                    <td class="border border-gray-800 px-4 py-2">{{$student->id}}</td>
+                    {{--<td class="border border-gray-800 px-4 py-2">{{$student->id}}</td>--}}
                     <td class="border border-gray-800 px-4 py-2">{{$student->dni}}</td>
                     <td class="border border-gray-800 px-4 py-2">{{$student->apellido}}</td>
                     <td class="border border-gray-800 px-4 py-2">{{$student->nombre}}</td>

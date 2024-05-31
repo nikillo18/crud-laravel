@@ -6,6 +6,7 @@ use App\Models\Asisst;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
+
 class AsisstController extends Controller
 {
     public function index()
@@ -35,7 +36,6 @@ class AsisstController extends Controller
 
         $asisst = Asisst::create($request->all());
 
-        // Incrementar la columna asisst en el modelo Student si presente es verdadero
         if ($request->presente) {
             $student = Student::find($request->student_id);
             $student->incrementAsisst();
@@ -43,4 +43,18 @@ class AsisstController extends Controller
 
         return redirect()->route('asissts.index')->with('success', 'Asistencia registrada correctamente');
     }
+
+    public function getAsisstsByDate(Request $request)
+    {
+        $date = $request->input('date');
+        $asissts = Asisst::where('fecha', $date)->with('student')->get();
+
+        $students = $asissts->map(function ($asisst) {
+            return $asisst->student;
+        });
+
+        return view('asissts.select-date', ['students' => $students]);
+    }
 }
+
+

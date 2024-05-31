@@ -9,7 +9,11 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentsRequest;
 use App\Http\Requests\students;
 use App\Http\Requests\UpdateStudentsRequest;
-use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use App\Models\Log;
+
 
 class StudentsController extends Controller
 {
@@ -41,7 +45,7 @@ class StudentsController extends Controller
         }*/
 
          return view('students.index', [
-            'students' => student::latest()->paginate(10)
+            'students' => student::latest()->paginate(20)
         ]);
     }
 
@@ -57,11 +61,21 @@ class StudentsController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreStudentsRequest $request): RedirectResponse
-    {
-        Student::create($request->all());
-        return redirect()->route('students.index')
-            ->withSuccess('new students is added successfully.');
+{
+    $student = Student::create($request->all());
+
+    // Registrar la acción en los logs
+    Log::create([
+        'user_id' => Auth::id(),
+        'action' => 'create',
+        'ip' => Request::ip(),
+        'browser' => $_SERVER['HTTP_SEC_CH_UA'],
+    ]);
+
+    return redirect()->route('students.index')
+        ->withSuccess('New student is added successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -88,23 +102,38 @@ class StudentsController extends Controller
      */
     public function update(UpdateStudentsRequest $request, $id): RedirectResponse
     {
-        $students = Student::Find($id);
-        $students->update($request->all());
+        $student = Student::find($id);
+        $student->update($request->all());
+    
+        Log::create([
+            'user_id' => Auth::id(),
+            'action' => 'update',
+            'ip' => Request::ip(),
+            'browser' => $_SERVER['HTTP_SEC_CH_UA'],
+        ]);
+    
         return redirect()->back()
-            ->withSuccess('students is updated successfully.');
+            ->withSuccess('Student is updated successfully.');
     }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id): RedirectResponse
-    {
-        $students = Student::Find($id);
-        
-        $students->delete();
-        return redirect()->route('students.index')
-            ->withSuccess('students is deleted successfully.');
-    }
+    public function destroy($id): RedirectResponse
+{
+    $student = Student::find($id);
+    $student->delete();
+
+    Log::create([
+        'user_id' => Auth::id(),
+        'action' => 'delete',
+        'ip' => Request::ip(),
+        'browser' => $_SERVER['HTTP_SEC_CH_UA'],
+    ]);
+
+    return redirect()->route('students.index')
+        ->withSuccess('Student is deleted successfully.');
+}
+
 }
 
 

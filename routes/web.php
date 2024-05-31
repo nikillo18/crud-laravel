@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AsisstController;
+use App\Http\Controllers\LogController;
+
 
 
 
@@ -36,6 +38,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/asissts/search', [AsisstController::class, 'search'])->name('asissts.search');
     Route::post('/asissts', [AsisstController::class, 'store'])->name('asissts.store');
 
+    // Nuevas rutas
+    Route::get('/select-date', function () {
+        return view('asissts.select-date');
+    })->name('select-date');
+
+    Route::get('/asissts/by_date', [AsisstController::class, 'getAsisstsByDate'])->name('asissts.by_date');
+    Route::get('/logs', [LogController::class, 'index'])->name('logs.index')->middleware('auth');
 
 });
 
