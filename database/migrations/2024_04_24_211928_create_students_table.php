@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('apellido', 50);
             $table->string('nombre', 50);
             $table->date('nacimiento');
+            $table->integer('año');
             $table->integer('asisst')->default(0);
             $table->timestamps();
         });

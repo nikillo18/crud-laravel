@@ -1,6 +1,3 @@
-
-
-
 @section('content')
 <div class="container">
     <h1>Registro de Actividades</h1>

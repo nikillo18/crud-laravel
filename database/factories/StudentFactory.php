@@ -23,6 +23,7 @@ class StudentFactory extends Factory
             'apellido' => fake()->lastName(),
             'nombre' => fake()->name(),
             "nacimiento"=>fake()->date(),
+            'año'=>fake()->numberBetween($min = 1, $max = 3),
             'asisst'=>fake()->numberBetween($min = 1, $max = 10)
         ];
     }

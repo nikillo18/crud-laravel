@@ -25,6 +25,7 @@
                     <th class="border border-gray-800 px-4 py-2">Apellido</th>
                     <th class="border border-gray-800 px-4 py-2">Nombre</th>
                     <th class="border border-gray-800 px-4 py-2">Nacimiento</th>
+                    <th class="border border-gray-800 px-4 py-2">Año</th>
                     <th class="border border-gray-800 px-4 py-2">Asisst</th>
                     <th class="border border-gray-800 px-4 py-2">Acción</th>
                 </tr>
@@ -37,6 +38,7 @@
                     <td class="border border-gray-800 px-4 py-2">{{$student->apellido}}</td>
                     <td class="border border-gray-800 px-4 py-2">{{$student->nombre}}</td>
                     <td class="border border-gray-800 px-4 py-2">{{$student->nacimiento}}</td>
+                    <td class="border border-gray-800 px-4 py-2">{{$student->Año}}</td>
                     <td class="border border-gray-800 px-4 py-2">{{$student->asisst}}</td>
                     <td class="border border-gray-800 px-4 py-2">
                         <form action="{{ route('students.destroy', $student->id) }}" method="post" class="flex justify-center items-center space-x-2">

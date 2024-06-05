@@ -1,53 +1,38 @@
 <x-app-layout>
-<div class="flex justify-center mt-3">
-    <div class="w-full md:w-2/3 lg:w-1/2">
-        <div class="bg-gray-800 shadow-md rounded-lg overflow-hidden">
-            <div class="bg-gray-700 text-gray-200 px-6 py-4 border-b border-gray-600 flex justify-between items-center">
-                <div>
-                    Add New students
-                </div>
-                <div>
-                    <a href="{{ route('students.index') }}" class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded text-sm">&larr; Back</a>
-                </div>
-            </div>
-            <div class="px-6 py-4">
-                <form action="{{ route('students.store') }}" method="post">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Crear Configuración de Asistencia') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <form method="POST" action="{{ route('configurations.store') }}">
                     @csrf
-                    <div class="mb-4">
-                        <label for="dni" class="block text-gray-300 mb-2">dni</label>
-                        <input maxlength="8" type="text" class="bg-gray-700 text-white border border-gray-600 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 @error('dni') border-red-500 @enderror" id="dni" name="dni" value="{{ old('dni') }}">
-                        @if ($errors->has('dni'))
-                        <span class="text-red-500 text-sm">{{ $errors->first('dni') }}</span>
-                        @endif
+
+                    <div class="mt-4">
+                        <label for="total_classes" class="block font-medium text-sm text-gray-700">Total de Clases</label>
+                        <input id="total_classes" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="number" name="total_classes" required />
                     </div>
-                    <div class="mb-4">
-                        <label for="apellido" class="block text-gray-300 mb-2">apellido</label>
-                        <input type="text" class="bg-gray-700 text-white border border-gray-600 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 @error('apellido') border-red-500 @enderror" id="apellido" name="apellido" value="{{ old('apellido') }}">
-                        @if ($errors->has('apellido'))
-                        <span class="text-red-500 text-sm">{{ $errors->first('apellido') }}</span>
-                        @endif
+
+                    <div class="mt-4">
+                        <label for="percentage_promotion" class="block font-medium text-sm text-gray-700">Porcentaje para Promocionar</label>
+                        <input id="percentage_promotion" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="number" name="percentage_promotion" required />
                     </div>
-                    <div class="mb-4">
-                        <label for="nombre" class="block text-gray-300 mb-2">nombre</label>
-                        <input type="text" class="bg-gray-700 text-white border border-gray-600 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 @error('nombre') border-red-500 @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}">
-                        @if ($errors->has('nombre'))
-                        <span class="text-red-500 text-sm">{{ $errors->first('nombre') }}</span>
-                        @endif
+
+                    <div class="mt-4">
+                        <label for="percentage_regular" class="block font-medium text-sm text-gray-700">Porcentaje para Regular</label>
+                        <input id="percentage_regular" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="number" name="percentage_regular" required />
                     </div>
-                    <div class="mb-4">
-                        <label for="nacimiento" class="block text-gray-300 mb-2">nacimiento</label>
-                        <input type="date" step="0.01" class="bg-gray-700 text-white border border-gray-600 rounded w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-600 @error('nacimiento') border-red-500 @enderror" id="nacimiento" name="nacimiento" value="{{ old('nacimiento') }}">
-                        @if ($errors->has('nacimiento'))
-                        <span class="text-red-500 text-sm">{{ $errors->first('nacimiento') }}</span>
-                        @endif
-                    </div>
-                    <div class="flex justify-center">
-                        <input type="submit" class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded" value="Add students">
+
+                    <div class="flex items-center justify-end mt-4">
+                        <button type="submit" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring focus:ring-indigo-200 active:bg-indigo-700 transition ease-in-out duration-150">
+                            Guardar
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
-
 </x-app-layout>

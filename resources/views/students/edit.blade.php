@@ -62,6 +62,14 @@
                         <p class="text-red-500 text-xs italic">{{ $errors->first('nacimiento') }}</p>
                         @endif
                     </div>
+                    
+                    <div class="mb-4">
+                        <label for="año" class="block text-gray-300 text-sm font-bold mb-2">año</label>
+                        <input type="text" step="0.01" class="shadow appearance-none border @error('año') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-900" id="año" name="año" value="{{ $students->año}}">
+                        @if ($errors->has('año'))
+                        <p class="text-red-500 text-xs italic">{{ $errors->first('año') }}</p>
+                        @endif
+                    </div>
 
                     <div class="mb-4 flex justify-center">
                         <input type="submit" class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded" value="Update">

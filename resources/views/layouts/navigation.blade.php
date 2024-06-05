@@ -18,15 +18,17 @@
                     <x-nav-link :href="route('asissts.index')" :active="request()->routeIs('asissts')">
                         {{ __('Assists') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('select-date')" :active="request()->routeIs('asissts')">
+                    <x-nav-link :href="route('select-date')" :active="request()->routeIs('select-date')">
                         {{ __('Select Date') }}
                     </x-nav-link>
                     <x-nav-link :href="route('logs.index')" :active="request()->routeIs('logs')">
-                        {{ __('logs') }}
+                        {{ __('Logs') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('configurations.index')" :active="request()->routeIs('configurations')">
+                        {{ __('Configuración') }}
                     </x-nav-link>
                 </div>
-                
-
+            </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

@@ -14,7 +14,8 @@ class Student extends Model
         'apellido',
         'nombre',
         'nacimiento',
-        'asisst'  // Asegúrate de que asisst está aquí
+        'año',
+        'asisst',
     ];
 
     public function assists()
@@ -26,5 +27,28 @@ class Student extends Model
     {
         $this->increment('asisst');
     }
+
+    public function calculateStatus()
+    {
+        $configuration = Configuration::first();
+        if (!$configuration) {
+            return 'Configuración no encontrada';
+        }
+
+        $totalClasses = $configuration->total_classes;
+        $percentagePromotion = $configuration->percentage_promotion;
+        $percentageRegular = $configuration->percentage_regular;
+
+        $attendancePercentage = ($this->asisst / $totalClasses) * 100;
+
+        if ($attendancePercentage >= $percentagePromotion) {
+            return 'Promocionado';
+        } elseif ($attendancePercentage >= $percentageRegular) {
+            return 'Regular';
+        } else {
+            return 'Libre';
+        }
+    }
 }
+
 
