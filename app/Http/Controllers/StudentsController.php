@@ -76,17 +76,19 @@ class StudentsController extends Controller
     {
         $student = Student::findOrFail($id);
         $student->update($request->all());
-
+    
         Log::create([
             'user_id' => Auth::id(),
             'action' => 'update',
             'ip' => Request::ip(),
             'browser' => $_SERVER['HTTP_SEC_CH_UA'] ?? null,
         ]);
-
-        return redirect()->back()
-            ->withSuccess('Student is updated successfully.');
+    
+        return redirect()->route('students.index')
+            ->withSuccess('El estudiante se ha actualizado correctamente.');
     }
+
+     
 
     /**
      * Remove the specified resource from storage.
