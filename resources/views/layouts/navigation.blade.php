@@ -25,7 +25,7 @@
                         {{ __('Logs') }}
                     </x-nav-link>
                     <x-nav-link :href="route('configurations.index')" :active="request()->routeIs('configurations')">
-                        {{ __('Configuración') }}
+                        {{ __('configurations') }}
                     </x-nav-link>
                 </div>
             </div>

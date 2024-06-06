@@ -15,47 +15,46 @@
                     <div class="flex mb-4">
                         <label for="id" class="w-1/3 text-gray-300 text-sm font-bold text-right pr-4"><strong>id:</strong></label>
                         <div class="w-2/3 text-gray-300">
-                            {{ $students->id }}
+                            {{ $student->id }}
                         </div>
                     </div>
-    
+
                     <div class="flex mb-4">
                         <label for="dni" class="w-1/3 text-gray-300 text-sm font-bold text-right pr-4"><strong>dni:</strong></label>
                         <div class="w-2/3 text-gray-300">
-                            {{ $students->dni }}
+                            {{ $student->dni }}
                         </div>
                     </div>
-    
+
                     <div class="flex mb-4">
                         <label for="apellido" class="w-1/3 text-gray-300 text-sm font-bold text-right pr-4"><strong>apellido:</strong></label>
                         <div class="w-2/3 text-gray-300">
-                            {{ $students->apellido }}
+                            {{ $student->apellido }}
                         </div>
                     </div>
-    
+
                     <div class="flex mb-4">
                         <label for="nombre" class="w-1/3 text-gray-300 text-sm font-bold text-right pr-4"><strong>nombre:</strong></label>
                         <div class="w-2/3 text-gray-300">
-                            {{ $students->nombre }}
+                            {{ $student->nombre }}
                         </div>
                     </div>
-    
+
                     <div class="flex mb-4">
                         <label for="nacimiento" class="w-1/3 text-gray-300 text-sm font-bold text-right pr-4"><strong>nacimiento:</strong></label>
                         <div class="w-2/3 text-gray-300">
-                            {{ $students->nacimiento }}
+                            {{ $student->nacimiento }}
                         </div>
                     </div>
-    
+
                     <div class="flex mb-4">
                         <label for="condicion" class="w-1/3 text-gray-300 text-sm font-bold text-right pr-4"><strong>condicion:</strong></label>
                         <div class="w-2/3 text-gray-300">
-                            {{ $students->calculateStatus() }}
+                            {{ $status }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </x-app-layout>
-    
+</x-app-layout>

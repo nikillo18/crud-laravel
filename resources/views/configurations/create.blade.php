@@ -11,25 +11,25 @@
                 <form method="POST" action="{{ route('configurations.store') }}">
                     @csrf
 
-                    <div>
-                        <x-label for="total_classes" :value="__('Total de Clases')" />
-                        <x-input id="total_classes" class="block mt-1 w-full" type="number" name="total_classes" required />
+                    <div class="mt-4">
+                        <label for="total_classes" class="block font-medium text-sm text-gray-700">Total de Clases</label>
+                        <input id="total_classes" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="number" name="total_classes" required />
                     </div>
 
                     <div class="mt-4">
-                        <x-label for="percentage_promotion" :value="__('Porcentaje para Promocionar')" />
-                        <x-input id="percentage_promotion" class="block mt-1 w-full" type="number" name="percentage_promotion" required />
+                        <label for="percentage_promotion" class="block font-medium text-sm text-gray-700">Porcentaje para Promocionar</label>
+                        <input id="percentage_promotion" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="number" name="percentage_promotion" required />
                     </div>
 
                     <div class="mt-4">
-                        <x-label for="percentage_regular" :value="__('Porcentaje para Regular')" />
-                        <x-input id="percentage_regular" class="block mt-1 w-full" type="number" name="percentage_regular" required />
+                        <label for="percentage_regular" class="block font-medium text-sm text-gray-700">Porcentaje para Regular</label>
+                        <input id="percentage_regular" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="number" name="percentage_regular" required />
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <x-button class="ml-4">
-                            {{ __('Guardar') }}
-                        </x-button>
+                        <button type="submit" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring focus:ring-indigo-200 active:bg-indigo-700 transition ease-in-out duration-150">
+                            Guardar
+                        </button>
                     </div>
                 </form>
             </div>

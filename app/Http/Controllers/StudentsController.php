@@ -2,50 +2,25 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\student;
+use App\Models\Student;
+use App\Models\Configuration;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreStudentsRequest;
-use App\Http\Requests\students;
 use App\Http\Requests\UpdateStudentsRequest;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use App\Models\Log;
-
 
 class StudentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index():view
+    public function index(): View
     {
-       /**  $todaysDate = date("m-d");
-        $date = new DateTime();
-        $date->format('d-Y');
-        $students = Student::all();
-        $birthdayStudents = [];
-        
-        foreach ($students as $student) {
-            if ($student->nacimiento == $todaysDate) {
-                $birthdayStudents[] = $student->nombre;
-            }
-        }
-        
-        if (!empty($birthdayStudents)) {
-            $mensaje = "Hoy es el cumpleaños de:";
-            foreach ($birthdayStudents as $nombre) {
-                $mensaje .= "," . $nombre ;
-            }
-            return $mensaje;
-        } else {
-            return "No hay estudiantes que cumplan años hoy.";
-        }*/
-
-         return view('students.index', [
-            'students' => student::latest()->paginate(20)
+        return view('students.index', [
+            'students' => Student::latest()->paginate(20)
         ]);
     }
 
@@ -61,31 +36,28 @@ class StudentsController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreStudentsRequest $request): RedirectResponse
-{
-    $student = Student::create($request->all());
+    {
+        $student = Student::create($request->all());
 
-    // Registrar la acción en los logs
-    Log::create([
-        'user_id' => Auth::id(),
-        'action' => 'create',
-        'ip' => Request::ip(),
-        'browser' => $_SERVER['HTTP_SEC_CH_UA'],
-    ]);
+        Log::create([
+            'user_id' => Auth::id(),
+            'action' => 'create',
+            'ip' => Request::ip(),
+            'browser' => $_SERVER['HTTP_SEC_CH_UA'] ?? null,
+        ]);
 
-    return redirect()->route('students.index')
-        ->withSuccess('New student is added successfully.');
+        return redirect()->route('students.index')
+            ->withSuccess('New student is added successfully.');
     }
-
 
     /**
      * Display the specified resource.
      */
-    public function show( $id): View
+    public function show($id): View
     {
-        $students = Student::Find($id);
-        return view('students.show', [
-            'students' => $students
-        ]);
+        $student = Student::findOrFail($id);
+        $status = $this->calculateStatus($student);
+        return view('students.show', compact('student', 'status'));
     }
 
     /**
@@ -93,8 +65,8 @@ class StudentsController extends Controller
      */
     public function edit($id): View
     {
-        $students = Student::Find($id);
-        return view('students.edit',compact("students"));
+        $student = Student::findOrFail($id);
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -102,38 +74,63 @@ class StudentsController extends Controller
      */
     public function update(UpdateStudentsRequest $request, $id): RedirectResponse
     {
-        $student = Student::find($id);
+        $student = Student::findOrFail($id);
         $student->update($request->all());
-    
+
         Log::create([
             'user_id' => Auth::id(),
             'action' => 'update',
             'ip' => Request::ip(),
-            'browser' => $_SERVER['HTTP_SEC_CH_UA'],
+            'browser' => $_SERVER['HTTP_SEC_CH_UA'] ?? null,
         ]);
-    
+
         return redirect()->back()
             ->withSuccess('Student is updated successfully.');
     }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($id): RedirectResponse
-{
-    $student = Student::find($id);
-    $student->delete();
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
 
-    Log::create([
-        'user_id' => Auth::id(),
-        'action' => 'delete',
-        'ip' => Request::ip(),
-        'browser' => $_SERVER['HTTP_SEC_CH_UA'],
-    ]);
+        Log::create([
+            'user_id' => Auth::id(),
+            'action' => 'delete',
+            'ip' => Request::ip(),
+            'browser' => $_SERVER['HTTP_SEC_CH_UA'] ?? null,
+        ]);
 
-    return redirect()->route('students.index')
-        ->withSuccess('Student is deleted successfully.');
-}
+        return redirect()->route('students.index')
+            ->withSuccess('Student is deleted successfully.');
+    }
 
+    /**
+     * Calculate the status of a student based on attendance.
+     */
+    public function calculateStatus(Student $student): string
+    {
+        $configuration = Configuration::first();
+        if (!$configuration) {
+            return 'Configuración no encontrada';
+        }
+
+        $totalClasses = $configuration->total_classes;
+        $percentagePromotion = $configuration->percentage_promotion;
+        $percentageRegular = $configuration->percentage_regular;
+
+        $attendancePercentage = ($student->asisst / $totalClasses) * 100;
+
+        if ($attendancePercentage >= $percentagePromotion) {
+            return 'Promocionado';
+        } elseif ($attendancePercentage >= $percentageRegular) {
+            return 'Regular';
+        } else {
+            return 'Libre';
+        }
+    }
 }
 
 
